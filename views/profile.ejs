@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Profile</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 500px;
+      margin: auto;
+      padding-top: 30px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      background: white;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    th, td {
+      text-align: left;
+      padding: 12px 15px;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #007BFF;
+      color: white;
+      font-weight: 600;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    button {
+      padding: 12px 25px;
+      font-size: 1em;
+      background-color: #007BFF;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #session-warning {
+      color: #ff9800;
+      font-weight: bold;
+      margin-bottom: 20px;
+      display: none;
+      background-color: #fff3cd;
+      padding: 12px;
+      border-radius: 5px;
+      border: 1px solid #ffeeba;
+    }
+  </style>
+  <script src="/js/tokenExpiry.js"></script>
+</head>
+<body>
+  <h2>Your Profile</h2>
+
+  <div id="session-warning">Your session will expire soon. Please save your work.</div>
+
+  <table>
+    <tr><th>ID:</th><td><%= user.id %></td></tr>
+    <tr><th>Username:</th><td><%= user.username %></td></tr>
+    <tr><th>Email:</th><td><%= user.email %></td></tr>
+    <tr><th>Created At:</th><td><%= user.created_at.toLocaleString() %></td></tr>
+  </table>
+
+  <form action="/logout" method="GET">
+    <button type="submit">Logout</button>
+  </form>
+</body>
+</html>
