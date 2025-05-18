@@ -43,7 +43,6 @@ const registerUser = async (req, res) => {
     });
   }
 
-  // Verify reCAPTCHA
   try {
     const query = `secret=${RECAPTCHA_SECRET_KEY}&response=${recaptchaToken}`;
     console.log('Sending to Google reCAPTCHA:', query);
@@ -75,7 +74,6 @@ const registerUser = async (req, res) => {
     });
   }
 
-  // Validation logic
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) {
     return res.render('register', {
@@ -134,7 +132,6 @@ const registerUser = async (req, res) => {
   }
 };
 
-// Login user
 const loginUser = async (req, res) => {
   const { identifier, password, 'g-recaptcha-response': recaptchaToken } = req.body;
 
@@ -149,7 +146,6 @@ const loginUser = async (req, res) => {
     });
   }
 
-  // Verify reCAPTCHA
   try {
     const query = `secret=${RECAPTCHA_SECRET_KEY}&response=${recaptchaToken}`;
     console.log('Sending to Google reCAPTCHA:', query);
@@ -206,7 +202,7 @@ const loginUser = async (req, res) => {
 
     res.cookie('token', token, {
       httpOnly: true,
-      secure: false, // Set to true in production with HTTPS
+      secure: true, 
       maxAge: 15 * 60 * 1000,
     });
 
