@@ -39,7 +39,26 @@ A secure authentication system built with Node.js, Express, PostgreSQL (raw SQL)
 ## 🛠️ Local Setup
 
 1. **Clone the repository**
-
-```bash
 git clone https://github.com/SatvikPriyadarshi/authAppPostgres.git
 cd authAppPostgres
+
+2. Install Dependencies
+npm install
+
+3. Create a PostgreSQL Database and Table
+If you're using pgAdmin, create a new database (e.g., authapp), then run this SQL query to create the required table:
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(100) NOT NULL,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+5. Run the Application Locally
+node app.js
+Visit: http://localhost:3000
+
+6. Optional - Health Check Endpoint
+To verify that the server is up and running, visit:
+http://localhost:3000/health-check
